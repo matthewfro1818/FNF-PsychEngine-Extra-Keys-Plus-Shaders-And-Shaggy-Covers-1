@@ -384,6 +384,27 @@ class PlayState extends MusicBeatState
 			case 'tank': new Tank();					//Week 7 - Ugh, Guns, Stress
 			case 'phillyStreets': new PhillyStreets(); 	//Weekend 1 - Darnell, Lit Up, 2Hot
 			case 'phillyBlazin': new PhillyBlazin();	//Weekend 1 - Blazin
+			case 'house': new DaveHouse();
+			case 'house-sunset': new DaveHouse();
+			case 'house-night': new DaveHouse();
+			case 'red-void': new RedVoid();
+			case 'farm': new BambiFarm();
+			case 'farm-night': new BambiFarm();
+			case 'festival': new BambiFestival();
+			case 'interdimension-void': new InterdimensionalVoid();
+			case 'backyard': new DaveBackyard();
+			case 'green-void': new GreenVoid();
+			case 'glitchy-void': new GlitchyVoid();
+			case 'desktop': new Desktop();
+			case 'exbungo-land': new ExbungoLand();
+			case 'rapBattle': new RapBattle();
+			case 'freeplay': new Freeplay();
+			case 'roof': new Roof();
+			case 'bedroom': new DaveBedroom();
+			case 'desert': new Desert();
+			case 'master': new Master();
+			case 'overdrive': new Overdrive();
+			case 'office': new Office();
 		}
 		if(isPixelStage) introSoundsSuffix = '-pixel';
 
