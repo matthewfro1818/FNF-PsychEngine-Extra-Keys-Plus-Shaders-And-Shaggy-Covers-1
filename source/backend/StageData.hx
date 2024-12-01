@@ -110,6 +110,50 @@ class StageData {
 				return 'schoolEvil';
 			case 'ugh' | 'guns' | 'stress':
 				return 'tank';
+			case 'house' | 'insanity' | 'supernovae' | 'warmup':
+				return 'house';
+			case 'polygonized':
+				return 'red-void';
+			case 'bonus-song':
+				return 'inside-house';
+			case 'blocked' | 'corn-theft' | 'maze':
+				return 'farm';
+			case 'indignancy':
+				return 'farm-night';
+			case 'splitathon' | 'mealie':
+				return 'farm-night';
+			case 'shredder' | 'greetings':
+				return 'festival';
+			case 'interdimensional':
+				return 'interdimension-void';
+			case 'rano':
+				return 'backyard';
+			case 'cheating':
+				return 'green-void';
+			case 'unfairness':
+				return 'glitchy-void';
+			case 'exploitation':
+				return 'desktop';
+			case 'kabunga':
+				return 'exbungo-land';
+			case 'glitch' | 'memory':
+				return 'house-night';
+			case 'secret':
+				return 'house-sunset';
+			case 'vs-dave-rap' | 'vs-dave-rap-two':
+				return 'rapBattle';
+			case 'recursed':
+				return 'freeplay';
+			case 'roofs':
+				return 'roof';
+			case 'bot-trot':
+				return 'bedroom';
+			case 'escape-from-california':
+				return 'desert';
+			case 'master':
+				return 'master';
+			case 'overdrive':
+				return 'overdrive';
 		}
 		return 'stage';
 	}
