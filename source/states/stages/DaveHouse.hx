@@ -136,7 +136,51 @@ class DaveHouse extends BaseStage
 	//    curSection
 	override function stepHit()
 	{
-		// Code here
+		switch (SONG.song.toLowerCase())
+		{
+			case 'insanity':
+				switch (curStep)
+				{
+					case 384 | 1040:
+						defaultCamZoom = 0.9;
+					case 448 | 1056:
+						defaultCamZoom = 0.8;
+					case 512 | 768:
+						defaultCamZoom = 1;
+					case 640:
+						defaultCamZoom = 1.1;
+					case 660 | 680:
+						FlxG.sound.play(Paths.sound('static'), 0.1);
+						dad.visible = false;
+						dadmirror.visible = true;
+						curbg.visible = true;
+						iconP2.changeIcon(dadmirror.curCharacter);
+					case 664 | 684:
+						dad.visible = true;
+						dadmirror.visible = false;
+						curbg.visible = false;
+						iconP2.changeIcon(dad.curCharacter);
+					case 708:
+						defaultCamZoom = 0.8;
+						dad.playAnim('um', true);
+
+					case 1176:
+						FlxG.sound.play(Paths.sound('static'), 0.1);
+						dad.visible = false;
+						dadmirror.visible = true;
+						curbg.loadGraphic(Paths.image('backgrounds/void/redsky', 'shared'));
+						if (isShaggy) curbg.y -= 200;
+						curbg.alpha = 1;
+						curbg.visible = true;
+						iconP2.changeIcon(dadmirror.curCharacter);
+					case 1180:
+						dad.visible = true;
+						dadmirror.visible = false;
+						iconP2.changeIcon(dad.curCharacter);
+						dad.canDance = false;
+						dad.animation.play('scared', true);
+				}
+		}
 	}
 	override function beatHit()
 	{
