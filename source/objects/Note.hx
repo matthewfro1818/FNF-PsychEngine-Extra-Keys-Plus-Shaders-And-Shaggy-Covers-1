@@ -14,7 +14,7 @@ import flixel.math.FlxMath;
 import flixel.util.FlxColor;
 import flixel.math.FlxRandom;
 import flash.display.BitmapData;
-import editors.ChartingState;
+import states.editors.ChartingState;
 
 import shaders.ColorSwap;
 
