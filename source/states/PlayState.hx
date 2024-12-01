@@ -4984,7 +4984,8 @@ class PlayState extends MusicBeatState
 		if(!note.isSustainNote) invalidateNote(note);
 
 		if (!note.isSustainNote) invalidateNote(note);
-    }
+		}
+        }
 
 	function spawnNoteSplashOnNote(note:Note) {
 		if(ClientPrefs.noteSplashes && note != null) {
