@@ -3,13 +3,76 @@ package states.stages;
 import states.stages.objects.*;
 import backend.StageData;
 
-class Template extends BaseStage
+class DaveHouse extends BaseStage
 {
 	// If you're moving your stage from PlayState to a stage file,
 	// you might have to rename some variables if they're missing, for example: camZooming -> game.camZooming
 
-	override function create()
+	override function create(bgName:String, revertedBG:Bool)
 	{
+		botplayTxt = new FlxText(healthBarBG.x + healthBarBG.width / 2 - 75, healthBarBG.y + (FlxG.save.data.downscroll ? 100 : -100), 0,
+		"BOTPLAY", 20);
+		botplayTxt.setFormat((SONG.song.toLowerCase() == "overdrive") ? Paths.font("ariblk.ttf") : font, 42, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		botplayTxt.scrollFactor.set();
+		botplayTxt.borderSize = 3;
+		botplayTxt.visible = botPlay;
+		add(botplayTxt);
+
+		case 'house' | 'house-night' | 'house-sunset':
+				
+        	var skyType:String = '';
+		var assetType:String = '';
+		switch (bgName)
+		{
+			case 'house':
+				stageName = 'daveHouse';
+				skyType = 'sky';
+			case 'house-night':
+				stageName = 'daveHouse_night';
+				skyType = 'sky_night';
+				assetType = 'night/';
+			case 'house-sunset':
+				stageName = 'daveHouse_sunset';
+				skyType = 'sky_sunset';
+		}
+		var bg:BGSprite = new BGSprite('bg', -600, -300, Paths.image('backgrounds/shared/${skyType}'), null, 0.6, 0.6);
+		add(bg);
+
+		var stageHills:BGSprite = new BGSprite('stageHills', -834, -159, Paths.image('backgrounds/dave-house/${assetType}hills'), null, 0.7, 0.7);
+		add(stageHills);
+
+		var grassbg:BGSprite = new BGSprite('grassbg', -1205, 580, Paths.image('backgrounds/dave-house/${assetType}grass bg'), null);
+		sprites.add(grassbg);
+		add(grassbg);
+
+		var gate:BGSprite = new BGSprite('gate', -755, 250, Paths.image('backgrounds/dave-house/${assetType}gate'), null);
+		sprites.add(gate);
+		add(gate);
+
+		var stageFront:BGSprite = new BGSprite('stageFront', -832, 505, Paths.image('backgrounds/dave-house/${assetType}grass'), null);
+		sprites.add(stageFront);
+		add(stageFront);
+
+		if (SONG.song.toLowerCase() == 'insanity' || states.PlayState.localFunny == CharacterFunnyEffect.Recurser)
+		{
+			var bg:BGSprite = new BGSprite('bg', -600, -200, Paths.image('backgrounds/void/redsky_insanity'), null, 1, 1, true, true);
+			bg.alpha = 0.75;
+			bg.visible = false;
+			add(bg);
+			// below code assumes shaders are always enabled which is bad
+			voidShader(bg);
+		}
+
+			
+		var variantColor = getBackgroundColor(stageName);
+		if (stageName != 'daveHouse_night')
+		{
+			stageHills.color = variantColor;
+			grassbg.color = variantColor;
+			gate.color = variantColor;
+			stageFront.color = variantColor;
+		}
+		
 		backgroundSprites = createBackgroundSprites(StageData.stage, false);
 		switch (SONG.song.toLowerCase())
 		{
@@ -19,16 +82,21 @@ class Template extends BaseStage
 		switch (SONG.song.toLowerCase())
 		{
 			case 'polygonized' | 'interdimensional':
-				var stage = SONG.song.toLowerCase() != 'interdimensional' ? 'house-night' : 'festival';
-				revertedBG = createBackgroundSprites(stage, true);
-				for (bgSprite in revertedBG)
-				{
-					bgSprite.color = getBackgroundColor(SONG.song.toLowerCase() != 'interdimensional' ? 'daveHouse_night' : 'festival');
-					bgSprite.alpha = 0;
-				}
+			var stage = SONG.song.toLowerCase() != 'interdimensional' ? 'house-night' : 'festival';
+			revertedBG = createBackgroundSprites(stage, true);
+			for (bgSprite in revertedBG)
+			{
+				bgSprite.color = getBackgroundColor(SONG.song.toLowerCase() != 'interdimensional' ? 'daveHouse_night' : 'festival');
+				bgSprite.alpha = 0;
+			}
+		}
+		switch (curSong.toLowerCase())
+		{
+			case 'insanity':
+				preload('backgrounds/void/redsky');
+				preload('backgrounds/void/redsky_insanity');
 		}
 	}
-	
 	override function createPost()
 	{
 		// Use this function to layer things above characters!
