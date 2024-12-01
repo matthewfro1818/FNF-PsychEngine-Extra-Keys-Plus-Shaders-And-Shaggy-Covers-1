@@ -958,6 +958,9 @@ class PlayState extends MusicBeatState
 		#end
 
 		var gfVersion:String = SONG.gfVersion;
+
+		var noGFSongs = ['memory', 'five-nights', 'bot-trot', 'escape-from-california', 'overdrive'];
+
 		if(gfVersion == null || gfVersion.length < 1)
 		{
 			switch (curStage)
@@ -980,6 +983,10 @@ class PlayState extends MusicBeatState
 					gfVersion = 'pico-speaker';
 			}
 			SONG.gfVersion = gfVersion; //Fix for the Chart Editor
+		}
+		if (noGFSongs.contains(SONG.song.toLowerCase()) || !['none', 'bf', 'bf-pixel'].contains(boyfriend.curCharacter))
+		{
+			gfVersion = 'gf-none';
 		}
 
 		if (!stageData.hide_girlfriend)
