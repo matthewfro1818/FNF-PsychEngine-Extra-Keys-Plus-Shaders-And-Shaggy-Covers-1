@@ -16,6 +16,8 @@ import flixel.math.FlxRandom;
 import flash.display.BitmapData;
 import editors.ChartingState;
 
+import shaders.ColorSwap;
+
 using StringTools;
 
 typedef EventNote = {
